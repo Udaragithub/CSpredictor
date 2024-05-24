@@ -4,4 +4,4 @@ CSpredictor is a Python-based software interface to detemine Slag-Ash-Based Geop
 ![](https://github.com/Udaragithub/CSpredictor/blob/main/Images/GUI%20and%20Skeleton2.png)
 
 ## How to use this interface
-
+To be updated

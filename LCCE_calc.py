@@ -1,18 +1,18 @@
 import pandas as pd
 import numpy as np
-import xgboost as xgb
 import joblib
+import tensorflow as tf
+from tensorflow.keras.models import load_model
 import tkinter as tk
-from tkinter import Label, Entry, Button, messagebox
-from tkinter import Text
-from tkinter import END
+from tkinter import Label, Entry, Button, messagebox, Text, END
 import matplotlib.pyplot as plt
 
-lca_df = pd.read_csv("D:\MSc\Papers\DNN paper+Pasindu\Carbon_db.csv")
+# Load the LCA data
+lca_df = pd.read_csv("Carbon_db.csv")
 
-# Load the trained XGBoost model
-ml_model = "D:\MSc\Papers\DNN paper+Pasindu\XGB_model.sav"
-xgb_regr = joblib.load(ml_model)
+# Load the trained DNN model and scaler
+scaler = joblib.load('scaler.pkl')
+dnn_model = load_model('dnn_model.h5')
 
 def gwp(var1, var2, var3, var4, var5, var6, var7, var8):
     try:
@@ -36,10 +36,8 @@ def gwp(var1, var2, var3, var4, var5, var6, var7, var8):
     except ValueError:
         raise ValueError("All input variables must be numeric")
 
-
 # Function to generate random data and create the DataFrame
 def generate_random_data(number_of_gen_data):
-    # Replace this with your code for generating random data
     min_max_vals = {
         "GGBFS": {"min": 0, "max": 488},
         "CCA": {"min": 0, "max": 488},
@@ -64,7 +62,8 @@ def generate_random_data(number_of_gen_data):
 
 # Function to get final variables based on expected value
 def get_final_variables(df, expected_value, max_error_allowed):
-    df["prediction"] = xgb_regr.predict(df)
+    df["prediction"] = dnn_model.predict(scaler.transform(df))
+    df["prediction"] = df["prediction"].astype(float)  # Ensure predictions are floats
     df["error"] = df["prediction"] - expected_value
     df["abs_error"] = abs(df["prediction"] - expected_value)
     df["abs_error_%"] = df["abs_error"] * 100 / abs(expected_value)
@@ -86,8 +85,6 @@ def get_final_variables(df, expected_value, max_error_allowed):
 
     return final_variables
 
-
-# Function to handle button click event
 def on_submit():
     try:
         expected_value = float(entry.get())
@@ -114,11 +111,8 @@ def on_submit():
         messagebox.showerror("Error", f"Error: {str(e)}")
         print(f"Error: {str(e)}")
 
-
-# Function to handle exit button click event
 def on_exit():
     root.destroy()
-
 
 # Tkinter GUI setup
 root = tk.Tk()

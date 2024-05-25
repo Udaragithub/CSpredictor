@@ -8,8 +8,7 @@ message: >-
   metadata from this file.
 type: software
 authors:
-  - given-names: Udara
-    name-particle: Sachinthana
+  - given-names: Udara Sachinthana
     family-names: Perera
     affiliation: Sri Lanka Insititute of Information Technology
     orcid: 'https://orcid.org/0000-0002-3585-0940'

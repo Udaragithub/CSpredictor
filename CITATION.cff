@@ -1,0 +1,38 @@
+# This CITATION.cff file was generated with cffinit.
+# Visit https://bit.ly/cffinit to generate yours today!
+
+cff-version: 1.2.0
+title: CSpredictor
+message: >-
+  If you use this software, please cite it using the
+  metadata from this file.
+type: software
+authors:
+  - given-names: Udara
+    name-particle: Sachinthana
+    family-names: Perera
+    affiliation: Sri Lanka Insititute of Information Technology
+    orcid: 'https://orcid.org/0000-0002-3585-0940'
+  - given-names: 'D. P. P. '
+    family-names: Meddage
+    affiliation: >-
+      School of Engineering and Information Technology,
+      University of New South Wales, Canberra, Australia
+    orcid: 'https://orcid.org/0000-0002-9938-5267'
+  - given-names: 'I. U. '
+    family-names: Ekanayake
+    affiliation: >-
+      Ceylon Institute for Artificial Intelligence Research
+      (CIAIR), Colombo, Sri Lanka
+  - given-names: R. S. S.
+    family-names: ' Ranasinghe'
+    affiliation: Sri Lanka Insititute of Information Technology
+  - given-names: W. K.V. J. B.
+    family-names: ' Kulasooriya'
+repository-code: 'https://github.com/Udaragithub/CSpredictor'
+abstract: >-
+  CSpredictor is a Python-based software interface to
+  predict compressive strength of Slag-Ash-Based Geopolymer
+  Concrete mixes. The prediction employs a well-trained Deep
+  Neural Network (DNN) model.
+license: MIT
